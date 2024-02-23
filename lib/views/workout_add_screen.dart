@@ -12,6 +12,7 @@ class WorkoutAddScreen extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               showDialog(
+                
                 context: context,
                 builder: (BuildContext context) {
                   return CustomDialog();

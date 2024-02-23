@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ExerciseCard extends StatelessWidget {
-  final String? label;
-  const ExerciseCard({Key? key, this.label}) : super(key: key);
+  const ExerciseCard({Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
