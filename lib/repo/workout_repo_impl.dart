@@ -1,29 +1,46 @@
-import 'package:workout_tracker/data/workout_db.dart';
+
+import 'package:workout_tracker/data/workout_db_impl.dart';
 import 'package:workout_tracker/model/exercise.dart';
 import 'package:workout_tracker/model/workout.dart';
 import 'package:workout_tracker/repo/workout_repo.dart';
 
 class WorkoutRepoImpl implements WorkoutRepo {
-  WorkoutDb workoutDb;
+  final WorkoutDbImpl workoutDb;
+
   WorkoutRepoImpl(this.workoutDb);
 
-
   @override
-  List<WorkoutModel> getAllWorkouts() {
+  List<WorkoutModel> getAllWorkoutLists() {
     return workoutDb.getAllWorkoutLists();
   }
-  
+
   @override
-  void addWorkout(String name, int time) {
-    workoutDb.addWorkout(name, time);
-  }
-  
-  @override
-  void addExercise(String workoutName, ExerciseModel exerciseModel) {
-    workoutDb.addExercise(workoutName, exerciseModel);
+  int noOfExerciseInWorkout(String workoutName) {
+    return workoutDb.noOfExerciseInWorkout(workoutName);
   }
 
+  @override
+  void addWorkout(String name) {
+    workoutDb.addWorkout(name);
+  }
 
-  // overall list contains different workouts
-  // each workout has a name and list of exercises
+  @override
+  void addExercise(String workoutName, String exerciseName, String weight, String reps, String sets) {
+    workoutDb.addExercise(workoutName, exerciseName, weight, reps, sets);
+  }
+
+  @override
+  void checkOffExercise(String workoutName, String exerciseName) {
+    workoutDb.checkOffExercise(workoutName, exerciseName);
+  }
+
+  @override
+  WorkoutModel getReleventWorkout(String workoutName) {
+    return workoutDb.getReleventWorkout(workoutName);
+  }
+
+  @override
+  ExerciseModel getReleventExercise(String workoutName, String exerciseName) {
+    return workoutDb.getReleventExercise(workoutName, exerciseName);
+  }
 }

@@ -2,18 +2,15 @@ import 'package:workout_tracker/model/exercise.dart';
 import 'package:hive/hive.dart';
 part 'workout.g.dart';
 
-
 @HiveType(typeId: 0)
 class WorkoutModel {
   @HiveField(0)
   final String name;
   @HiveField(1)
-  final int reminderTime;
-  @HiveField(2)
+  int? reminderTime = 0;
+  @HiveField(1)
   List<ExerciseModel> exercises = [];
 
   WorkoutModel(
-      {required this.reminderTime,
-      required this.name,
-      required this.exercises});
+      {this.reminderTime, required this.name, required this.exercises});
 }
