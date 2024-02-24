@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:workout_tracker/vm/workout_vm.dart';
 import 'package:workout_tracker/widgets/add_workout_card.dart';
 
 class WorkoutAddScreen extends StatelessWidget {
@@ -6,23 +8,36 @@ class WorkoutAddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showDialog(
-                
-                context: context,
-                builder: (BuildContext context) {
-                  return CustomDialog();
-                },
-              );
-            },
-            child: Text('Add new Workout'),
-          ),
+    final vm = Provider.of<WorkoutViewModel>(context);
+
+    return Consumer<WorkoutViewModel>(builder: (context, value, _) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Workout Tracker"),
         ),
-      ),
-    );
+        body: Column(
+          children: [
+            ListView.builder(
+                itemCount: vm.workoutList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(vm.workoutList[index].name),
+                  );
+                }),
+            FloatingActionButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CustomDialog();
+                  },
+                );
+              },
+              child: Icon(Icons.add),
+            )
+          ],
+        ),
+      );
+    });
   }
 }

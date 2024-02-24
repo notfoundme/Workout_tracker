@@ -7,9 +7,7 @@ abstract class WorkoutDb {
   int noOfExerciseInWorkout(String workoutName);
 
   //add a workout
-  void addWorkout(
-    String name,
-  );
+  void addWorkout(String name);
   //add exercise inside that workout
   void addExercise(String workoutName, String exerciseName, String weight,
       String reps, String sets);

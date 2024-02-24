@@ -1,11 +1,11 @@
 
-import 'package:workout_tracker/data/workout_db_impl.dart';
+import 'package:workout_tracker/data/workout_db.dart';
 import 'package:workout_tracker/model/exercise.dart';
 import 'package:workout_tracker/model/workout.dart';
 import 'package:workout_tracker/repo/workout_repo.dart';
 
 class WorkoutRepoImpl implements WorkoutRepo {
-  final WorkoutDbImpl workoutDb;
+  final WorkoutDb workoutDb;
 
   WorkoutRepoImpl(this.workoutDb);
 

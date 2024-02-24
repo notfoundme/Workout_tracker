@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:workout_tracker/model/workout.dart';
-import 'package:workout_tracker/repo/workout_repo.dart'; 
+import 'package:workout_tracker/repo/workout_repo.dart';
 
-class WorkoutViewModel extends ChangeNotifier {
+class WorkoutViewModel with ChangeNotifier {
   final WorkoutRepo repo;
   WorkoutViewModel(this.repo);
 
-  List<WorkoutModel> get workoutList => repo.getAllWorkoutLists();
+  List<WorkoutModel> get workoutList {
+    return repo.getAllWorkoutLists();
+  }
 
   int noOfExerciseInWorkout(String workoutName) {
     return repo.noOfExerciseInWorkout(workoutName);
@@ -18,7 +19,8 @@ class WorkoutViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addExercise(String workoutName, String exerciseName, String weight, String reps, String sets) {
+  void addExercise(String workoutName, String exerciseName, String weight,
+      String reps, String sets) {
     repo.addExercise(workoutName, exerciseName, weight, reps, sets);
     notifyListeners();
   }
@@ -27,6 +29,4 @@ class WorkoutViewModel extends ChangeNotifier {
     repo.checkOffExercise(workoutName, exerciseName);
     notifyListeners();
   }
-  
-
 }
