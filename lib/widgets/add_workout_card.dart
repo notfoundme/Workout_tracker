@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:workout_tracker/views/exercise_add_screen.dart';
 import 'package:workout_tracker/vm/workout_vm.dart';
 
 class CustomDialog extends StatefulWidget {
@@ -67,3 +66,7 @@ class _CustomDialogState extends State<CustomDialog> {
 //             title: labelText,
 //           )),
 // );
+
+
+
+// yo extract gareko widget bata main: workoutAddScreen lai workoutname kasari dinu?? 

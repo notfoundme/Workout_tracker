@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:workout_tracker/vm/workout_vm.dart';
 
-class ExerciseCard extends StatelessWidget {
-  const ExerciseCard({Key? key, }) : super(key: key);
+class ExerciseCard extends StatefulWidget {
+  final String WorkoutName;
+  const ExerciseCard({
+    Key? key,
+    required this.WorkoutName,
+  }) : super(key: key);
+
+  @override
+  State<ExerciseCard> createState() => _ExerciseCardState();
+}
+
+class _ExerciseCardState extends State<ExerciseCard> {
+  TextEditingController exerciseNameController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController repsController = TextEditingController();
+  TextEditingController setsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +37,14 @@ class ExerciseCard extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    String exerciseName = exerciseNameController.text;
+                    String reps = repsController.text;
+                    String sets = setsController.text;
+                    String weight = weightController.text;
+                    final vm1 = Provider.of<WorkoutViewModel>(context);
+                    vm1.addExercise(
+                        workoutName, exerciseName, weight, reps, sets);
+
                     Navigator.pop(context);
                   },
                   child: const Text('Save'),
@@ -55,4 +79,6 @@ class ExerciseCard extends StatelessWidget {
       ),
     );
   }
+
+  void save() {}
 }
